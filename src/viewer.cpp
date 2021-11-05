@@ -119,7 +119,7 @@ void Viewer::drawOnImage(FeatureTrackData& data, cv::Mat& view, cv::Mat& image)
 
     // draw timestamp
     std::string time_string = "t = " + std::to_string(data.t.toSec() - data.t_init.toSec());
-    cv::putText(view, time_string, scale * (cv::Point(image.size[1], image.size[0]) - cv::Point(140,2)), cv::FONT_HERSHEY_COMPLEX_SMALL, scale*.7, cvScalar(0,255,255), 1, CV_AA);
+    cv::putText(view, time_string, scale * (cv::Point(image.size[1], image.size[0]) - cv::Point(140,2)), cv::FONT_HERSHEY_COMPLEX_SMALL, scale*.7, cvScalar(0,255,255), 1, cv::LINE_AA);
 
     // draw patches
     for (int i=0; i<data.patches.size(); i++)
@@ -166,7 +166,7 @@ void Viewer::drawOnImage(FeatureTrackData& data, cv::Mat& view, cv::Mat& image)
         // draw feature ids
         cv::Point text_pos = cv::Point(patch.center_.x-half_patch_size+2, patch.center_.y-half_patch_size+8);
         if (FLAGS_display_feature_id)
-            cv::putText(view, std::to_string(i), scale*text_pos, cv::FONT_HERSHEY_COMPLEX_SMALL, scale * 0.4, cvScalar(255,0,0), 2, CV_AA);
+            cv::putText(view, std::to_string(i), scale*text_pos, cv::FONT_HERSHEY_COMPLEX_SMALL, scale * 0.4, cvScalar(255,0,0), 2, cv::LINE_AA);
     }
 
 }
