@@ -34,8 +34,8 @@ namespace tracker
 Tracker::Tracker(ros::NodeHandle &nh, viewer::Viewer &viewer)
     : nh_(nh), got_first_image_(false), sensor_size_(0,0), viewer_ptr_(&viewer), it_(nh)
 {
-    event_sub_ = nh_.subscribe("events", 10, &Tracker::eventsCallback, this);
-    image_sub_ = it_.subscribe("images", 1, &Tracker::imageCallback, this);
+    event_sub_ = nh_.subscribe("/dvs/events", 10, &Tracker::eventsCallback, this);
+    image_sub_ = it_.subscribe("/dvs/image_raw", 1, &Tracker::imageCallback, this);
 
     std::thread eventProcessingThread(&Tracker::processEvents, this);
     eventProcessingThread.detach();
